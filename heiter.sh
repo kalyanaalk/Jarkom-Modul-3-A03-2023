@@ -34,7 +34,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      riegel.canyon.A03.com.
-@       IN      A       192.170.4.1             ; IP Fern
+@       IN      A       192.170.2.1             ; IP Fern
 www     IN      CNAME   riegel.canyon.A03.com.
 @       IN      AAAA    ::1
 
@@ -54,7 +54,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      granz.channel.A03.com.
-@       IN      A       192.170.3.1             ; IP Lawine
+@       IN      A       192.170.2.1             ; IP Lawine
 www     IN      CNAME   granz.channel.A03.com.
 @       IN      AAAA    ::1
 
