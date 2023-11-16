@@ -24,6 +24,12 @@ server {
 
                 auth_basic "Restricted";
                 auth_basic_user_file /etc/nginx/rahasiakita/.htpasswd;
+
+                allow 192.170.3.69;
+                allow 192.170.3.70;
+                allow 192.170.4.167;
+                allow 192.170.4.168;
+                deny all;
         }
 
         location /its {
