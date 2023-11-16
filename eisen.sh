@@ -26,6 +26,14 @@ server {
                 auth_basic_user_file /etc/nginx/rahasiakita/.htpasswd;
         }
 
+        location /its {
+                proxy_pass https://www.its.ac.id;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
         error_log /var/log/nginx/lb_error.log;
         access_log /var/log/nginx/lb_access.log;
 }
