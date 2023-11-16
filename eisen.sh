@@ -7,9 +7,18 @@ service php7.3-fpm start
 service nginx start
 echo '
 upstream worker {
-        server 192.170.3.1 weight=4;
-        server 192.170.3.2 weight=2;
-        server 192.170.3.3 weight=1;
+        # least_conn;
+        # ip_hash;
+        # hash $request_uri consistent;
+        # server 192.170.3.1;
+        # server 192.170.3.2;
+        # server 192.170.3.3;
+
+        server 192.170.3.1 weight=640;
+        server 192.170.3.2 weight=200;
+        server 192.170.3.3 weight=25;
+
+
 }
 
 server {

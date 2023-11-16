@@ -1,5 +1,6 @@
 apt-get update
 apt-get install nginx git php7.3 php7.3-fpm -y
+apt-get install htop -y
 service php7.3-fpm start
 service nginx start
 apt-get install wget
