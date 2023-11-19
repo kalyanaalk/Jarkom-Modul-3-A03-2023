@@ -128,18 +128,19 @@ php_admin_value[disable_functions] = exec,passthru,shell_exec,system
 php_admin_flag[allow_url_fopen] = off
 
 pm = dynamic
+
 ; pm.max_children = 20
-; pm.start_servers = 3
+; pm.start_servers = 7
 ; pm.min_spare_servers = 5
 ; pm.max_spare_servers = 10
 
 ; pm.max_children = 30
-; pm.start_servers = 5
+; pm.start_servers = 12
 ; pm.min_spare_servers = 10
 ; pm.max_spare_servers = 20
 
 pm.max_children = 40
-pm.start_servers = 7
+pm.start_servers = 25
 pm.min_spare_servers = 20
 pm.max_spare_servers = 40
 

@@ -491,6 +491,14 @@ service php7.3-fpm restart
 service nginx restart
 ```
 
+Berikut adalah hasil lynx masing-masing worker di client.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175828916666105996/image.png?ex=656ca703&is=655a3203&hm=d4ecc0fbb8346f6465ab8d36a08816eb6e44b721cb17bdec0ddcb9150a79f816&)
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175828969371734108/image.png?ex=656ca710&is=655a3210&hm=97311222cf985d16d772231abf77487109ebec60281948b673d4cdcbfb1bd6ce&)
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175829079950377020/image.png?ex=656ca72a&is=655a322a&hm=ced3d642c8a665b036934b362103cbc844c111c5b24b82ceed80191116d71ba6&)
+
 ## Soal 7
 
 #### Kepala suku dari Bredt Region memberikan resource server sebagai berikut:
@@ -891,7 +899,7 @@ Berikut hasil pengetesan di database server.
 mysql -u kelompokA03 -p
 ```
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175790501388103691/image.png?ex=656c833c&is=655a0e3c&hm=9ed141f957a58fd1ecca6b134bf5cef104ffe569c0524f2563834a205730915b&)
 
 Berikut hasil pengetesan di client.
 
@@ -1020,11 +1028,11 @@ chmod -R 777 storage
 
 Berikul adalah hasil lynx IP ketiga laravel worker di client.
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175836146941571152/image.png?ex=656cadbf&is=655a38bf&hm=7a786f4ec63d63934679d0f43d631c0c4c5624c12cb837649a813fa181581ee5&)
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175837891004469388/image.png?ex=656caf5f&is=655a3a5f&hm=ae46c28947f57a3af95bdb2899a833017ffbb19a587432c01813c28f1b9927df&)
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175838128200753375/image.png?ex=656caf97&is=655a3a97&hm=627da5e56b480852282a330c0b7dfa2563f7beae35059ae5c2b3a99835c7e2af&)
 
 ## Soal 15, 16, 17
 
@@ -1142,6 +1150,14 @@ server {
 }
 ```
 
+Berikut adalah hasil lynx 192.170.2.1/frieren, 192.170.2.1/flamme, dan 192.170.2.1/fern.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175838980751753276/image.png?ex=656cb063&is=655a3b63&hm=319f93af9fc2e90592fdeca4adc32ebfd8c506c80fe6f7be6b5e67b2ca30fbf8&)
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175839101996519474/image.png?ex=656cb07f&is=655a3b7f&hm=752309acc54fc5b643eed5e271d961fe8bc7041bb7ceb6878940b2490538e12e&)
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175839274667622430/image.png?ex=656cb0a9&is=655a3ba9&hm=9904020211aa1477796f771284a7c2d9ae103ef0aac3f0133db3f0759d913d6c&)
+
 ## Soal 19
 
 #### Untuk meningkatkan performa dari Worker, coba implementasikan PHP-FPM pada Frieren, Flamme, dan Fern. Untuk testing kinerja naikkan 
@@ -1171,17 +1187,17 @@ php_admin_flag[allow_url_fopen] = off
 
 pm = dynamic
 ; pm.max_children = 20
-; pm.start_servers = 3
+; pm.start_servers = 7
 ; pm.min_spare_servers = 5
 ; pm.max_spare_servers = 10
 
 ; pm.max_children = 30
-; pm.start_servers = 5
+; pm.start_servers = 12
 ; pm.min_spare_servers = 10
 ; pm.max_spare_servers = 20
 
 pm.max_children = 40
-pm.start_servers = 7
+pm.start_servers = 25
 pm.min_spare_servers = 20
 pm.max_spare_servers = 40
 
@@ -1209,34 +1225,34 @@ Ubah juga php-fpm menjadi sebagai berikut di /etc/nginx/sites-available/implemen
 
 ```
 ; pm.max_children = 20
-; pm.start_servers = 3
+; pm.start_servers = 7
 ; pm.min_spare_servers = 5
 ; pm.max_spare_servers = 10
 ```
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175801647092469912/image.png?ex=656c8d9e&is=655a189e&hm=6ef6b290c92b1dc292c205569ee865cafbae1c38a288e8d216e7b18eefac9023&)
 
 - Percobaan kedua
 
 ```
-pm.max_children = 30
-pm.start_servers = 5
-pm.min_spare_servers = 10
-pm.max_spare_servers = 20
+; pm.max_children = 30
+; pm.start_servers = 12
+; pm.min_spare_servers = 10
+; pm.max_spare_servers = 20
 ```
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175801211388170271/image.png?ex=656c8d36&is=655a1836&hm=fb9c863bc57159ee2ae0cfba404cdac23ca76070a3e34375d1d4c7bdf7ab6c52&)
 
 - Percobaan ketiga
 
 ```
-;pm.max_children = 40
-;pm.start_servers = 7
-;pm.min_spare_servers = 20
-;pm.max_spare_servers = 40
+pm.max_children = 40
+pm.start_servers = 25
+pm.min_spare_servers = 20
+pm.max_spare_servers = 40
 ```
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175801579488690217/image.png?ex=656c8d8d&is=655a188d&hm=126c08c80b77e17a4a2dcbb4bda28db1afbebf330c959ad51a8a0250e59414b6&)
 
 ## Soal 20
 
@@ -1255,4 +1271,4 @@ upstream laravel {
 
 Berikut adalah hasilnya.
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175853225467973662/image.png?ex=656cbda7&is=655a48a7&hm=d5cba5f8373e21bd7cc9db5c9bf74c792b93689db64762b3ef11abd703715eb5&)
