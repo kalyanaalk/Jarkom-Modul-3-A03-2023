@@ -1018,19 +1018,129 @@ chmod -R 777 public
 chmod -R 777 storage
 ```
 
-Berikul adalah hasil lynx riegel.canyon.A03.com
+Berikul adalah hasil lynx IP ketiga laravel worker di client.
+
+![image]()
+
+![image]()
+
+![image]()
 
 ## Soal 15, 16, 17
 
 #### Riegel Channel memiliki beberapa endpoint yang harus ditesting sebanyak 100 request dengan 10 request/second. Tambahkan response dan hasil testing pada grimoire.
 
 #### POST /auth/register (15)
+
+Berikut command untuk mendapat response dari endpoint.
+
+```
+curl -s -X POST -H "Content-Type: application/json" -d '{"username":"kalyana", "password":"kalyana"}' http://192.170.4.1/api/auth/register
+```
+
+Berikut response yang didapat.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175795437341523988/image.png?ex=656c87d5&is=655a12d5&hm=51731ee7c47f417fed47e8d439ad23dc94c4ae9666e5992d992f412035911c65&)
+
+Berikut command untuk melihat hasil testing.
+
+```
+echo '{"username":"kalyana", "password":"kalyana"}' > register.json
+ab -n 100 -c 10 -p register.json -T "application/json" -H "Content-Type:application/json" http://192.170.4.1/api/auth/register
+```
+
+Berikut hasil testingnya.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175795524763389982/image.png?ex=656c87ea&is=655a12ea&hm=446391c7c4050c50684a6df5f79a94e7317038400e424b76baf5ded190d3a1b6&)
+
 #### POST /auth/login (16)
+
+Berikut command untuk mendapat response dari endpoint.
+
+```
+curl -s -X POST -H "Content-Type: application/json" -d '{"username":"kalyana", "password":"kalyana"}' http://192.170.4.1/api/auth/login
+```
+
+Berikut response yang didapat.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175795601850507264/image.png?ex=656c87fc&is=655a12fc&hm=94a896d93a22fb13dac47b1a43df18cd6fa3f13306bd8251e9984d051c04157d&)
+
+Berikut command untuk melihat hasil testing.
+
+```
+echo '{"username":"kalyana", "password":"kalyana"}' > login.json
+ab -n 100 -c 10 -p login.json -T "application/json" -H "Content-Type:application/json" http://192.170.4.1/api/auth/login
+```
+
+Berikut hasil testingnya.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175795679520641034/image.png?ex=656c880f&is=655a130f&hm=73ae425e80ff728f61bf8acf1c7346f1113c6c1b3d91e7d5653e2195c95bfb7e&)
+
 #### GET /me (17)
+
+Berikut command untuk mendapat response dari endpoint.
+
+```
+curl -H "Authorization: Bearer eyJpc3M0eXAiOiJKV1QiLCJhbGciOiJIUzI1.eyJpc3M0eXAiOiJKV1QiLCJhbGciOiJIUzI1YXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE3MDAxMzkwMjUsImV4cCI6MTcwMDE0MjYyNSwibmJmIjoxNzAwMTM5MDI1LCJqdGkiOiJ2cGVpN3F6NVBRZkdrcWkwIiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.wGOnFRgCxbQ6xSJ25x_vO9peHMWQaiTSFdXjOykARHR" http://192.170.4.1/api/me
+```
+
+Berikut response yang didapat.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175795743592824842/image.png?ex=656c881e&is=655a131e&hm=05caf777d17d159530f3b9b67154699da42618ac517dde04234da8bde0e8e95e&)
+
+Berikut command untuk melihat hasil testing.
+
+```
+ab -n 100 -c 10 -H "Authorization: Bearer eyJpc3M0eXAiOiJKV1QiLCJhbGciOiJIUzI1.eyJpc3M0eXAiOiJKV1QiLCJhbGciOiJIUzI1YXBpL2F1dGgvcmVnaXN0ZXIiLCJpYXQiOjE3MDAxMzkwMjUsImV4cCI6MTcwMDE0MjYyNSwibmJmIjoxNzAwMTM5MDI1LCJqdGkiOiJ2cGVpN3F6NVBRZkdrcWkwIiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.wGOnFRgCxbQ6xSJ25x_vO9peHMWQaiTSFdXjOykARHR" http://192.170.4.1/api/me
+```
+
+Berikut hasil testingnya.
+
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1175795868574687322/image.png?ex=656c883c&is=655a133c&hm=7f4909539d049fece63051defb836436c5752a6b8e632a508d94b9384b654d9f&)
 
 ## Soal 18
 
 #### Untuk memastikan ketiganya bekerja sama secara adil untuk mengatur Riegel Channel maka implementasikan Proxy Bind pada Eisen untuk mengaitkan IP dari Frieren, Flamme, dan Fern.
+
+Tambahkan konfigurasi berikut untuk proxy bind di file /etc/nginx/sites-available/lb-php pada load balancer.
+
+```
+upstream laravel {
+    server 192.170.4.1;
+    server 192.170.4.2;
+    server 192.170.4.3;
+}
+
+server {
+    listen 81;
+    server_name riegel.canyon.A03.com;
+
+    location / {
+        proxy_pass http://laravel;
+        proxy_set_header    X-Real-IP $remote_addr;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    Host $http_host;
+    }
+
+    location /frieren/ {
+        proxy_bind 192.170.2.1;
+        proxy_pass http://192.170.4.1/index.php;
+    }
+
+    location /flamme/ {
+        proxy_bind 192.170.2.1;
+        proxy_pass http://192.170.4.2/index.php;
+    }
+
+    location /fern/ {
+        proxy_bind 192.170.2.1;
+        proxy_pass http://192.170.4.3/index.php;
+    }
+
+    error_log /var/log/nginx/lb_error.log;
+    access_log /var/log/nginx/lb_access.log;
+}
+```
 
 ## Soal 19
 
@@ -1046,6 +1156,103 @@ Berikul adalah hasil lynx riegel.canyon.A03.com
 
 #### sebanyak tiga percobaan dan lakukan testing sebanyak 100 request dengan 10 request/second kemudian berikan hasil analisisnya pada Grimoire.
 
+Lakukan konfigurasi-konfigurasi berikut di /etc/php/8.0/fpm/pool.d/eisen.conf.
+
+```
+echo '
+[eisen_site]
+user = eisen_user
+group = eisen_user
+listen = /var/run/php/php8.0-fpm-eisen.sock
+listen.owner = www-data
+listen.group = www-data
+php_admin_value[disable_functions] = exec,passthru,shell_exec,system
+php_admin_flag[allow_url_fopen] = off
+
+pm = dynamic
+; pm.max_children = 20
+; pm.start_servers = 3
+; pm.min_spare_servers = 5
+; pm.max_spare_servers = 10
+
+; pm.max_children = 30
+; pm.start_servers = 5
+; pm.min_spare_servers = 10
+; pm.max_spare_servers = 20
+
+pm.max_children = 40
+pm.start_servers = 7
+pm.min_spare_servers = 20
+pm.max_spare_servers = 40
+
+pm.process_idle_timeout = 10s
+' > /etc/php/8.0/fpm/pool.d/eisen.conf
+
+groupadd eisen_user
+useradd -g eisen_user eisen_user
+
+service nginx restart
+service php8.0-fpm start
+```
+
+Ubah juga php-fpm menjadi sebagai berikut di /etc/nginx/sites-available/implementasi
+
+```
+# pass PHP scripts to FastCGI server
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.0-fpm-eisen.sock;
+    }
+```
+
+- Percobaan pertama
+
+```
+; pm.max_children = 20
+; pm.start_servers = 3
+; pm.min_spare_servers = 5
+; pm.max_spare_servers = 10
+```
+
+![image]()
+
+- Percobaan kedua
+
+```
+pm.max_children = 30
+pm.start_servers = 5
+pm.min_spare_servers = 10
+pm.max_spare_servers = 20
+```
+
+![image]()
+
+- Percobaan ketiga
+
+```
+;pm.max_children = 40
+;pm.start_servers = 7
+;pm.min_spare_servers = 20
+;pm.max_spare_servers = 40
+```
+
+![image]()
+
 ## Soal 20
 
 #### Nampaknya hanya menggunakan PHP-FPM tidak cukup untuk meningkatkan performa dari worker maka implementasikan Least-Conn pada Eisen. Untuk testing kinerja dari worker tersebut dilakukan sebanyak 100 request dengan 10 request/second.
+
+Atur konfigurasi berikut untuk algoritma least connection di file /etc/nginx/sites-available/lb-php pada load balancer.
+
+```
+upstream laravel {
+    least_conn;
+    server 192.170.4.1;
+    server 192.170.4.2;
+    server 192.170.4.3;
+}
+```
+
+Berikut adalah hasilnya.
+
+![image]()
