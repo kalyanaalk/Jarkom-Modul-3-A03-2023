@@ -706,7 +706,7 @@ ab -n 100 -c 10 -g no7.data http://granz.channel.A03.com/
 
 - 3 worker
 
-![image]()
+![image](https://cdn.discordapp.com/attachments/1174683821438939156/1174687756862103563/image.png?ex=65688039&is=65560b39&hm=405af5be7200447ac2238c38a216df29240ed55625143aa49487a71b7d1dd7ed&)
 
 - 2 worker
 
