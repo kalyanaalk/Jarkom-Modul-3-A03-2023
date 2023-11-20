@@ -5,8 +5,7 @@ service php7.3-fpm start
 service nginx start
 apt-get install wget
 apt-get install unzip
-wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1ViSkRq7SmwZgdK64eRbr5Fm1EGCTPrU1' -O granz.channel.A03.com
-unzip granz.channel.A03.com
+wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1ViSkRq7SmwZgdK64eRbr5Fm$unzip granz.channel.A03.com
 mv modul-3 /var/www
 echo 'server {
     listen 80;

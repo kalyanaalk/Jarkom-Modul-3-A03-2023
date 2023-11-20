@@ -51,13 +51,14 @@ server {
 }
 
 upstream laravel {
+#    least_conn;
     server 192.170.4.1;
     server 192.170.4.2;
     server 192.170.4.3;
 }
 
 server {
-    listen 8000;
+    listen 81;
     server_name riegel.canyon.A03.com;
 
     location / {
